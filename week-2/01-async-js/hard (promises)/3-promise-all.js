@@ -5,18 +5,40 @@
  */
 
 function wait1(t) {
-
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res();
+        }, t*1000);
+    });
 }
 
 function wait2(t) {
-
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res();
+        }, t*1000);
+    });
 }
 
 function wait3(t) {
-
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res();
+        }, t*1000);
+    });
 }
 
 function calculateTime(t1, t2, t3) {
+    const start = Date.now();
+    const promise1 = wait1(t1);
+    const promise2 = wait2(t2);
+    const promise3 = wait3(t3);
+    let ans = 0;
+    return Promise.all([promise1, promise2, promise3]).then(() => {
+        return Date.now() - start;
+    }).catch(err => {
+        throw new Error('One of the promises was rejected: ', err);
+    });
 
 }
 

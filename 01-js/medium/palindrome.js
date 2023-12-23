@@ -4,7 +4,13 @@
 */
 
 function isPalindrome(str) {
-  return true;
+  const processedStr = Array.from(str).map((letter) => {
+    return letter.toUpperCase()
+  }).filter((letter) => {
+    return letter.charCodeAt(0) >= 65 && letter.charCodeAt(0) <= 97;
+  }).join("");
+  const reversedStr = Array.from(processedStr).reverse().join("");
+  return processedStr === reversedStr;
 }
 
 module.exports = isPalindrome;
